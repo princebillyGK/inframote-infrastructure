@@ -6,8 +6,6 @@ provider "heroku" {
 // Environment variables
 resource "heroku_config" "inframote_env" {
     sensitive_vars = {
-      SECRET_TOKEN = var.app_conf.secret_key
-      PAGE_ACCESS_TOKEN = var.app_conf.page_access_token
     }
 }
 
@@ -40,6 +38,13 @@ resource "heroku_app_config_association" "inframote_conf_assoc" {
 #   quantity   = 1
 #   size       = "Free"
 # }
+
+// PostgreSQL addon
+resource "heroku_addon" "database" {
+  name = "inframote-postgresql"
+  app_id = heroku_app.default.id
+  plan   = "heroku-postgresql:hobby-basic"
+}
 
 output "inframote_app_url" {
   value = heroku_app.inframote_app.web_url
