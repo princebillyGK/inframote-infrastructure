@@ -1,7 +1,7 @@
 locals {
   app = {
-    title = "NUKIT Chatbot"
-    name  = "chatbot-nukit"
-    url   = "https://nukitbot.herokuapp.com"
+    title = "Inframote"
+    name  = "inframote"
+    url   = "https://inframote.github.io"
   }
 }
